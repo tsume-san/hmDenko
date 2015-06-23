@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="../hmDenko.js"></script>
+		<style>
+			body{
+				background: #000;
+			}
+		</style>
+        <script>
+        // 掲示板関数こんな感じ？
+        /*
+        * @param viewStr 表示文字列
+        * @param viewStr 文字色 
+        * @param viewStr スペース色 
+        * @param viewStr 表示する親要素
+        * @param moveFlg true:動かす false:表示のみ
+        */
+        function loadDenko(viewStr, colorFill, colorSpace, parentElem, moveFlg){
+
+            var obj = new hmDenko();
+
+            obj.str         = viewStr; 
+            obj.fillElem    = '<span style="color:'+colorFill+'">■</span>'; 
+            obj.spaceElem   = '<span style="color:'+colorSpace+'">■</span>';
+            obj.parentElem  = '<div class="'+parentElem+'">';
+            obj.margin      = 1; 
+            obj.colLenLimit = 60; 
+            obj.leed = -1;
+
+           var res = obj.lightUp();
+
+            var denkou = res[0];
+            denkou += res[1];
+            denkou += res[2];
+            denkou += res[3];
+            denkou += res[4];
+
+            if(moveFlg == true) { 
+                moveDenko(obj, viewStr, colorFill, colorSpace, parentElem);
+            } else {
+                document.getElementById(parentElem).innerHTML = denkou;
+            }
+        }
+
+        function moveDenko(obj, viewStr, colorFill, colorSpace, parentElem){
+
+            var res = obj.lightUp();
+
+            var denkou = res[0];
+            denkou += res[1];
+            denkou += res[2];
+            denkou += res[3];
+            denkou += res[4];
+
+            document.getElementById(parentElem).innerHTML = denkou;
+
+            // タイマーで連続で処理するとシフト数分ずつ動く
+            setTimeout(function(){
+                    moveDenko(obj, viewStr, colorFill, colorSpace, parentElem);
+                },
+                100);
+        }
+        </script>
+	</head>
+	<body onload="loadDenko('KUSONEMI','#e33', '#311', 'keiziBan', true)">
+		<div id="keiziBan"></div>
+        <div style="color:#fff; margin-top:10px;">
+            hmDenko.jsのsample.jsからラップした関数を作ってみたで。<br />
+        </div>
+	</body>
+</html>
