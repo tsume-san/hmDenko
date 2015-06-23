@@ -1,5 +1,8 @@
 onload = sample;
 
+/*
+やる気のないサンプル
+*/
 function sample(){
 	/*
 	色々設定
