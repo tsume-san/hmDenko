@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="../jquery-plugin/jquery.hmdenko.js"></script>
+		<style>
+			body{
+				background: #000;
+                color:#fff;
+			}
+		</style>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+        <link rel="stylesheet" href="https://highlightjs.org/static/demo/styles/solarized_dark.css">
+        <script>
+        $(document).ready(function() {
+            $('pre').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        });
+            $().loadDenko();
+            $().loadDenko({
+                viewStr : 'TestHoge',
+                colorFill : '#0f0',
+                colorSpace : '#030',
+                parentElem : 'box',
+                moveFlg : true
+            });
+        </script>
+	</head>
+	<body>
+		<div id="hmdenko"></div>
+        なにも指定しない場合は要素、hmdenkoにKUSONEMIが流れます。コード↓<br />
+<pre><code class="javascript">//jQuery読み込み後 
+&lt;script src="../jquery-plugin/jquery.hmdenko.js"&gt;&lt;/script&gt;
+&lt;style&gt;
+    $().loadDenko();
+&lt;/style&gt;
+&lt;div id="hmdenko"&gt;&lt;/div&gt;
+</code></pre>
+        <br />
+        <br />
+		<div id="box"></div>
+        指定してやると好きな要素に文字列を流せます。コード↓<br />
+<pre><code class="javascript"> &lt;style&gt;
+    $().loadDenko({
+        viewStr : 'TestHoge', //流す文字
+        colorFill : '#0f0', //文字カラー
+        colorSpace : '#030', //余白カラー
+        parentElem : 'box', //要素
+        moveFlg : true //true 動かす false 表示のみ
+    });
+&lt;/style&gt;
+</code></pre>
+
+	</body>
+</html>
